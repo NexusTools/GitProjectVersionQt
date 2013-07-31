@@ -18,4 +18,11 @@
 #define AUTHORS "Unknown"
 #endif
 
+#ifdef GIT_BRANCH
+#define SOURCE_BRANCH GIT_BRANCH
+#else
+#warning "GIT_AUTHORS macro missing, please fix git support or specify manually."
+#define SOURCE_BRANCH "unknown"
+#endif
+
 #endif
