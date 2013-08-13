@@ -11,7 +11,6 @@ GIT_VERSION = $$system("bash -c \"git --version\"")
 		GIT_BRANCH = $$system("bash -c \"cd \'$$_PRO_FILE_PWD_\'; git branch | cut -c 3-\"")
 		GIT_REVISION = $$system("bash -c \"cd \'$$_PRO_FILE_PWD_\'; git rev-list HEAD | wc -l\"")
 		GIT_AUTHORS = $$system("bash -c \"cd \'$$_PRO_FILE_PWD_\'; git log --format=\'%aN<%aE>\' | sort -u | sed \':a;N;$!ba;s/\\n/,/g\' -\"")
-		GIT_COMMIT = $$system("bash -c \"cd \'$$_PRO_FILE_PWD_\'; git rev-parse HEAD\"")
 		message("$$GIT_BRANCH $$GIT_HEAD")
 		message("Revision $$GIT_REVISION")
 		!isEmpty(GIT_AUTHORS) {
@@ -21,8 +20,6 @@ GIT_VERSION = $$system("bash -c \"git --version\"")
 
 		!isEmpty(GIT_HEAD):DEFINES += $$quote(GIT_HEAD=\'\"$$GIT_HEAD\"\')
 		!isEmpty(GIT_BRANCH):DEFINES += $$quote(GIT_BRANCH=\'\"$$GIT_BRANCH\"\')
-		!isEmpty(GIT_COMMIT):DEFINES += $$quote(GIT_COMMIT=\'\"$$GIT_COMMIT\"\')
-
 		!isEmpty(GIT_REVISION) {
 			DEFINES += $$quote(GIT_REVISION=\'\"$$GIT_REVISION\"\')
 			VER_PAT = $$GIT_REVISION
